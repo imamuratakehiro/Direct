@@ -1,0 +1,3 @@
+_target_: dataset.PreTrainDataModule
+
+cfg: ${train}

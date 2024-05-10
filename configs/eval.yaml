@@ -1,0 +1,21 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - data: null # choose datamodule with `test_dataloader()` for evaluation
+  - train: null
+  - model: null
+  - logger: null
+  - trainer: default
+  - paths: default
+  - extras: default
+  - hydra: default
+  - experiment: triplet_with_unet/w
+
+task_name: ???
+
+tags: ["dev"]
+
+# passing checkpoint path is necessary for evaluation
+ckpt_path: ???
+

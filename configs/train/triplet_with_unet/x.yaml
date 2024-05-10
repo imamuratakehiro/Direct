@@ -1,0 +1,113 @@
+
+# hyper parameter
+n_epoch: 400
+inst_all: ['drums', 'bass', 'piano', 'guitar', 'residuals']
+inst_list: ['drums', 'bass', 'piano', 'guitar', 'residuals']
+lr: 0.0001
+
+# data
+dataset_dir: "/nas03/assets/Dataset/slakh"
+#pseudo: "31ways"
+pseudo: "ba_4t"
+n_triplet_train: 20000
+n_triplet_valid: 2000
+n_dataset_test: 1000
+n_song_psd: 10
+batch_train: 64
+batch_test: 64
+num_workers: 8
+pin_memory: False
+
+datasetname: "slakh"
+load_using_librosa: True
+mix_minus_inst: False
+test_psd_mine: False
+test_valid_norm: false
+triplet_not_list: True
+normalize: false
+#standardize: True
+standardize: False
+
+complex: False
+#mel: True
+mel: False
+n_mels: 259
+#n_mels: 1024
+#db: True
+db: False
+mono: True
+f_size: 2048
+#f_size: 4096
+hop_length: 512
+#hop_length: 1024
+pitch_shift: False
+# psd
+seconds_psd_train: 3
+seconds_psd_valid: 10
+seconds_psd_test: 10
+offset_psd_train: 1.5
+offset_psd_valid: 10.0
+offset_psd_test: 10.0
+# not_psd
+n_song_test: 50
+n_song_valid: 50
+not_psd_all: False # validのみ。testは常時全部
+not_psd_no_silence_stem: False
+seconds_not_psd_train: 3
+seconds_not_psd_valid: 10
+seconds_not_psd_test: 10
+#offset_psd_train: 1.5
+offset_not_psd_train: 3.0
+#offset_psd_valid: 5.0
+offset_not_psd_valid: 10.0
+offset_not_psd_test: 10.0
+# triplet
+seconds_triplet_train: 3
+seconds_triplet_valid: 3
+#seconds_triplet_test: 10
+offset_triplet_train: 1.5
+offset_triplet_valid: 1.5
+#offset_triplet_test: 10.0
+# c32
+seconds_c32_train: 3
+seconds_c32_valid: 10
+seconds_c32_test: 10
+offset_c32_train: 1.5
+offset_c32_valid: 5.0
+offset_c32_test: 10.0
+sr: 44100
+
+# model
+pl_target: model.Triplet
+#pl_target: model.TripletNoMss
+target: model.UNetForTriplet_2d_de5_to1d640
+#target: model.UNetForTriplet_2d_de1_to1d640
+#target: model.UNetForTriplet_to1d640_1dde5
+#target: model.UNetForTriplet_to1d640_1dde1_embnet
+#target: model.UNetForTriplet_2d_de5_to1d640_addencoder2
+#target: model.TripletModelZume
+#target: model.UNetForTriplet_2d_de5_to1d640_c64
+#target: model.MLPForTriplet
+to1d_mode: "mean_linear"
+order: "timefreq"
+#order: "freqtime"
+#order: "bilstm"
+margin: 0.2
+# monitor
+#monitor_es: "Valid/knn_avr"
+#monitor_es: "Valid/loss_all"
+monitor_es: "Valid/knn_psd_avr"
+monitor_mode_es: "max"
+#monitor_mode_es: "min"
+#monitor_sch: "train/loss_mix"
+#monitor_mode_sch: "min"
+# rate of loss
+unet_rate: 0
+triplet_rate: 1
+recog_rate: 0
+ckpt_model_path_kind: null
+ckpt_model_path: null
+
+# path
+output_dir: ${paths.output_dir}
+metadata_dir: ${paths.metadata_dir}

@@ -1,0 +1,70 @@
+
+# hyper parameter
+n_epoch: 400
+inst_all: ['drums', 'bass', 'piano', 'guitar', 'residuals']
+inst_list: ['drums', 'bass', 'piano', 'guitar', 'residuals']
+lr: 0.0001
+
+# data
+dataset_dir: "/nas03/assets/Dataset/slakh"
+n_dataset_test: 1000
+n_song_test: 20
+batch_train: 64
+batch_test: 64
+num_workers: 8
+pin_memory: true
+
+datasetname: "slakh"
+mix_minus_inst: False
+test_valid_norm: false
+normalize128: False
+condition32: True
+load_using_librosa: True
+test_psd_mine: False
+emb_640norm: false
+normalize: false
+standardize: False
+
+complex: True
+mel: False
+n_mels: 259
+db: False
+mono: True
+f_size: 2048
+hop_length: 512
+seconds_psd_train: 3
+seconds_psd_valid: 10
+seconds_psd_test: 10
+offset_psd_train: 1.5
+offset_psd_valid: 5.0
+offset_psd_test: 10.0
+seconds_triplet_train: 3
+seconds_triplet_valid: 3
+#seconds_triplet_test: 10
+offset_triplet_train: 1.5
+offset_triplet_valid: 1.5
+#offset_triplet_test: 10.0
+sr: 44100
+
+# model
+#model_target: model.PreTrain
+model_target: model.PreTrain32
+#target: model.UNetForTriplet_2d_de5_to1d640
+#target: model.UNetForTriplet_1d_de5_to1d640
+target: model.UNetForTriplet_2d_de5_to1d640_c64
+#target: model.TripletModelZume
+to1d_mode: "mean_linear"
+#to1d_mode: "pool"
+order: "timefreq"
+#order: "freqtime"
+#order: "bilstm"
+margin: 0.2
+# monitor
+monitor_es: "val/knn_avr"
+monitor_mode_es: "max"
+#monitor_sch: "train/loss_mix"
+#monitor_mode_sch: "min"
+
+# path
+output_dir: ${paths.output_dir}
+metadata_dir: ${paths.metadata_dir}

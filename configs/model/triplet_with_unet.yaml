@@ -1,0 +1,36 @@
+#_target_: model.Triplet
+#_target_: model.TripletNoMss
+_target_: ${train.pl_target}
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: ${train.lr}
+  weight_decay: 0.0
+
+scheduler: null
+#  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+#  _partial_: true
+#  mode: ${train.monitor_mode_sch}
+#  factor: 1
+#  patience: 5
+#  verbose: true
+
+net:
+  _target_: ${train.target}
+  cfg: ${train}
+  inst_list: ${train.inst_list}
+  f_size: ${train.f_size}
+  mono: ${train.mono}
+  to1d_mode: ${train.to1d_mode}
+  order: ${train.order}
+  mel: ${train.mel}
+  n_mels: ${train.n_mels}
+
+# pretrain32
+#ckpt_model_path: /home/imamura23/nas02home/outputs/pretrain/runs/2023-11-07/01-11-14/checkpoints/epoch_053.ckpt
+# pretrain
+#ckpt_model_path: /home/imamura23/nas02home/outputs/pretrain/runs/2023-11-07/00-58-42/checkpoints/epoch_016.ckpt
+ckpt_model_path: ${train.ckpt_model_path}
+
+cfg: ${train}

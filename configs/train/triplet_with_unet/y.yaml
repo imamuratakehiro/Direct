@@ -1,0 +1,188 @@
+
+# hyper parameter
+n_epoch: 400
+inst_all: ['drums', 'bass', 'piano', 'guitar', 'residuals']
+inst_list: ['drums', 'bass', 'piano', 'guitar', 'residuals']
+#inst: 'guitar'
+#inst_list: ['guitar']
+lr: 0.00005
+#lr: 5e-7
+
+# data
+dataset_dir: "/nas03/assets/Dataset/slakh"
+#pseudo: "31ways"
+pseudo: "ba_4t"
+#pseudo: "b_4t_inst"
+n_triplet_train: 20000
+n_triplet_valid: 2000
+n_dataset_test: 1000
+#n_song_test: 20
+batch_train: 64
+batch_test: 64
+num_workers: 8
+pin_memory: False
+
+datasetname: "slakh"
+load_using_librosa: True
+mix_minus_inst: False
+test_psd_mine: False
+test_valid_norm: False
+triplet_not_list: True
+normalize: False
+standardize: True
+#normalize_unet: false
+#standardize_unet: False
+normalize_featurenet: false
+standardize_featurenet: True
+self_att: False
+bpm: True
+pe_bpm_len: 1
+#add_bpm: True
+add_bpm: True
+bpm_min: 60
+bpm_max: 200
+#q_dim: 10
+#d_ff: 512
+d_ff: 1024
+#d_ff: 2048
+#d_ff: 4096
+#heads_num: 5
+heads_num: 4
+n_encoder_layer: 6
+
+complex: False
+#complex_unet: False
+complex_featurenet: False
+#complex_featurenet: True
+wave_featurenet: False
+#mel_unet: False
+mel_featurenet: False
+#mel_featurenet: False
+#n_mels: 259
+n_mels: 256
+#complex: False
+mel: True
+#n_mels: 256
+db: True
+mono: True
+f_size: 2048
+hop_length: 512
+#n_mels: 512
+db_featurenet: True
+chroma_featurenet: False
+harm_featurenet: False
+perc_featurenet: False
+#pitch_shift: True
+pitch_shift: False
+n_shift: 2
+highpass: False
+#high_fq: 24
+high_fq: 48
+lowpass: False
+#low_fq: 200
+#low_fq: 400
+low_fq: 48
+
+seconds_psd_train: 3
+seconds_psd_valid: 10
+seconds_psd_test: 10
+offset_psd_train: 3.0
+offset_psd_valid: 10.0
+offset_psd_test: 10.0
+seconds_triplet_train: 3
+seconds_triplet_valid: 3
+#seconds_triplet_test: 10
+offset_triplet_train: 3.0
+offset_triplet_valid: 3.0
+#offset_triplet_test: 10.0
+# not_psd
+n_song_test: 50
+n_song_valid: 50
+not_psd_all: False # validのみ。testは常時全部
+not_psd_no_silence_stem: True
+#seconds_not_psd_train: 3
+seconds_not_psd_valid: 10
+seconds_not_psd_test: 10
+#offset_psd_train: 1.5
+#offset_not_psd_train: 3.0
+#offset_psd_valid: 5.0
+offset_not_psd_valid: 10.0
+offset_not_psd_test: 10.0
+# c32
+seconds_c32_train: 3
+seconds_c32_valid: 10
+seconds_c32_test: 10
+offset_c32_train: 3.0
+offset_c32_valid: 10.0
+offset_c32_test: 10.0
+sr: 44100
+
+# model
+pl_target: model.TripletNoMss
+#pl_target: model.Triplet
+#target: model.UNetForTriplet_2d_de5_to1d640
+#target: model.UNetForTriplet_1d_de5_to1d640
+#target: model.UNetForTriplet_2d_de1_to1d640
+#target: model.UNetForTriplet_to1d640_1dde5
+#target: model.UNetForTriplet_to1d640_1dde1_embnet
+#target: model.UNetForTriplet_2d_de5_to1d640_addencoder2
+#target: model.UNetForTriplet_2d_de5_to1d640_addresencoder
+#target: model.UNetForTriplet_to1dLSTM
+#target: model.NNetForTriplet
+#target: model.TripletModelZume
+#target: model.UNetForTriplet_2d_de5_to1d64_resnet
+#target: model.LSTMMLPForTriplet
+#target: model.CrossMLPForTriplet
+target: model.TransformerWithBPMAll
+to1d_mode: "mean_linear"
+#to1d_mode: "meanstd_linear"
+order: "timefreq"
+#order: "freqtime"
+#order: "bilstm"
+margin: 0.2
+# monitor
+#monitor_es: "Valid/knn_avr"
+#monitor_es: "Valid/loss_all"
+#monitor_es: "Valid/knn_avr"
+monitor_es: "Valid/knn_psd_avr"
+monitor_mode_es: "max"
+#monitor_mode_es: "min"
+#monitor_sch: "train/loss_mix"
+#monitor_mode_sch: "min"
+# rate of loss
+unet_rate: 0
+triplet_rate: 1
+recog_rate: 0
+#ckpt_model_path_kind: zume_not_norm640
+#ckpt_model_path_kind: pretrain32
+# pretrain32
+#ckpt_model_path: /home/imamura23/nas02home/outputs/pretrain/runs/2023-11-07/01-11-14/checkpoints/epoch_053.ckpt
+#pretrain32 complex
+#ckpt_model_path_kind: pretrain32_complex
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/pretrain/runs/2023-12-06/10-53-21/checkpoints/epoch_336.ckpt
+# pretrain32 complex 1d_de5
+#ckpt_model_path_kind: pretrain32_complex_1d_de5
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/pretrain/runs/2023-12-10/07-44-53/checkpoints/epoch_304.ckpt
+# pretrain mel=259
+#ckpt_model_path: /home/imamura23/nas02home/outputs/pretrain/runs/2023-11-07/00-58-42/checkpoints/epoch_016.ckpt
+# pretrain_mel=259_not_norm640
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/pretrain/runs/2023-11-15/15-31-05/checkpoints/epoch_027.ckpt
+# pretrain_mel=259_norm640
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/pretrain/runs/2023-11-21/11-21-37/checkpoints/epoch_053.ckpt
+# pretrain mel=128
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/pretrain/runs/2023-11-15/09-21-27/checkpoints/epoch_168.ckpt
+# unet
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/triplet_with_unet/runs/2023-11-11/14-22-12/checkpoints/epoch_025.ckpt
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/triplet_with_unet/runs/2023-11-10/11-04-28/checkpoints/epoch_026.ckpt
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/triplet_with_unet/runs/2023-11-01/09-41-24/checkpoints/epoch_028.ckpt
+# zume not norm640
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/pretrain/runs/2023-11-22/12-41-18/checkpoints/epoch_035.ckpt
+# zume norm640
+#ckpt_model_path: /nas02/homes/imamura23-1000067/outputs/pretrain/runs/2023-11-22/10-54-34/checkpoints/epoch_039.ckpt
+ckpt_model_path_kind: null
+ckpt_model_path: null
+
+# path
+output_dir: ${paths.output_dir}
+metadata_dir: ${paths.metadata_dir}
+

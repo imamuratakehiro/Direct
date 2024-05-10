@@ -1,0 +1,31 @@
+#_target_: model.PreTrain
+#_target_: model.PreTrain32
+_target_: ${train.model_target}
+
+optimizer:
+  _target_: torch.optim.Adam
+  _partial_: true
+  lr: ${train.lr}
+  weight_decay: 0.0
+
+scheduler: null
+#  _target_: torch.optim.lr_scheduler.ReduceLROnPlateau
+#  _partial_: true
+#  mode: ${train.monitor_mode_sch}
+#  factor: 1
+#  patience: 5
+#  verbose: true
+
+net:
+  _target_: ${train.target}
+  #_target_: model.JNet128Attention
+  cfg: ${train}
+  inst_list: ${train.inst_list}
+  f_size: ${train.f_size}
+  mono: ${train.mono}
+  to1d_mode: ${train.to1d_mode}
+  order: ${train.order}
+  mel: ${train.mel}
+  n_mels: ${train.n_mels}
+
+cfg: ${train}

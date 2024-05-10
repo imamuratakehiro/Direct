@@ -1,0 +1,3 @@
+_target_: dataset.TripletDataModule
+
+cfg: ${train}

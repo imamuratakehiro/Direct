@@ -1,0 +1,17 @@
+# @package _global_
+
+# to execute this experiment run:
+# python train.py experiment=example
+
+defaults:
+  - override /data: triplet_with_unet
+  - override /model: triplet_with_unet
+  - override /train: triplet_with_unet/x
+#  - override /callbacks: default
+#  - override /trainer: default
+
+# all parameters below will be merged with parameters from default configurations set above
+# this allows you to overwrite only specified parameters
+
+#tags: ["triplet", "model_to1d640_to2dde5"]
+tags: ["triplet", "model_2d_to1d640_de5"]
