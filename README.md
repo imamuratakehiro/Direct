@@ -5,7 +5,7 @@
 </p>
 
 # Direct
-This repository contains codes of Direct approaches in (URL of the thesis which is going to be published).
+This repository contains codes of Direct approaches in [Multi-Task Learning Approaches for Music Similarity Representation Learning Based on Individual Instrument Sounds](http://www.apsipa2024.org/files/papers/333.pdf).
 
 ## About Branches
 The main branch contains the core codes of Direct approaches. The code for each specific method is in the branch.
